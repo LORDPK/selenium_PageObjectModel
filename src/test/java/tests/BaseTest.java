@@ -21,7 +21,7 @@ public class BaseTest implements ITestListener {
         System.setProperty("webdriver.chrome.driver", "C:\\selenium_drivers\\chromedriver.exe");
         options = new ChromeOptions();
         //options.addArguments("--headless");
-        options.addArguments("incognito");
+        //options.addArguments("incognito");
         options.addArguments("start-maximized");
         //options.addArguments("window-size=1400,600");
     }
@@ -29,8 +29,6 @@ public class BaseTest implements ITestListener {
     @BeforeMethod
     public void beforeTest(){
         _driver = new ChromeDriver(options);
-        //Comentamos esta linea porque ejecutamos en headless por lo que no es necesario
-        //_driver.manage().window().maximize();
         _driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
 

@@ -35,6 +35,7 @@ public class HomeMenu extends BasePage{
         clickElement(LogINButton);
         this.user = user;
         this.pass = pass;
+
     }
 
     public void LogOutUser()
@@ -49,10 +50,7 @@ public class HomeMenu extends BasePage{
 
     public void verifyWrongPass()
     {
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-        String alerttext = alert.getText();
-        alert.accept();
+        String alerttext = acceptAlert();
         Assert.assertTrue(alerttext.equals("Wrong password."),"Error en el texto recuperado, se esperaba 'Wrong password.', pero se recupero '" + alerttext + "'." );
     }
 

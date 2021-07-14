@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,7 +50,16 @@ public class BasePage {
         driver.findElement(locator).sendKeys(text);
     }
 
-    //SendKey
+    //Alert
+    public String acceptAlert() {
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        String alerttext = alert.getText();
+        alert.accept();
+        return alerttext;
+    }
+
+    //AssertText
     public void assertElementText(By locator, String text) {
         waitVisibility(locator);
         String textElement = driver.findElement(locator).getText();
