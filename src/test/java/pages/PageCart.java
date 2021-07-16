@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import java.util.List;
 
@@ -19,19 +20,19 @@ public class PageCart extends BasePage{
         super(driver);
     }
 
-    public void NavUrlCart() {
-        driver.navigate().to("https://www.demoblaze.com/cart.html");
-    }
-
-    public void CapturarPrecioPodructos() {
+    public void CapturarPrecioProductos() {
         waitVisibility(preciosProductos);
         this.listaPrecios = driver.findElements(preciosProductos);
     }
     
     public void SumarPrecios() {
+        Reporter.log("Inicio el proceso de sumatoria de todos los productos");
+
         for (WebElement web : listaPrecios) {
             this.totalPrecios = this.totalPrecios + Integer.parseInt(web.getText());
         }
+
+        Reporter.log("El total de la suma de los productos es: " + this.totalPrecios);
     }
 
     public void AssertPrecioTotal() {

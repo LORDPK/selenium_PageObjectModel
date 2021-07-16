@@ -1,10 +1,9 @@
 package pages;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 public class HomeMenu extends BasePage{
     private String user;
@@ -17,6 +16,7 @@ public class HomeMenu extends BasePage{
     public By LogINButton = new By.ByXPath("//button[text()='Log in']");
     public By usernameLogIN = new By.ById("nameofuser");
     public By LogOutButton = new By.ById("logout2");
+    public By CartMenu = By.xpath("//*[text()=\"Cart\"]");
 
     //Contructor
     public HomeMenu(WebDriver driver) {
@@ -29,13 +29,13 @@ public class HomeMenu extends BasePage{
 
     public void LoginUser(String user, String pass)
     {
+        Reporter.log("Usuario: " + user +  "Contraseña: " + pass);
         clickElement(LogINMenu);
         sendTextElement(LogINUsername, user);
         sendTextElement(LogINPassword, pass);
         clickElement(LogINButton);
         this.user = user;
         this.pass = pass;
-
     }
 
     public void LogOutUser()
@@ -57,5 +57,9 @@ public class HomeMenu extends BasePage{
     public void verifyLogOutUser(){
         waitNotVisibility(usernameLogIN);
         Assert.assertTrue(driver.findElement(usernameLogIN).getText().isEmpty(), "Error, deveria estas a blancos, Contiene : " + driver.findElement(usernameLogIN).getText());
+    }
+
+    public void GotoCart() {
+        clickElement(CartMenu);
     }
 }

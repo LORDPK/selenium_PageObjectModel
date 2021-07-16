@@ -20,10 +20,10 @@ public class BaseTest implements ITestListener {
     public void beforeSuite(){
         System.setProperty("webdriver.chrome.driver", "C:\\selenium_drivers\\chromedriver.exe");
         options = new ChromeOptions();
-        //options.addArguments("--headless");
+        options.addArguments("--headless");
         //options.addArguments("incognito");
-        options.addArguments("start-maximized");
-        //options.addArguments("window-size=1400,600");
+        //options.addArguments("start-maximized");
+        options.addArguments("window-size=1400,600");
     }
 
     @BeforeMethod
@@ -34,12 +34,20 @@ public class BaseTest implements ITestListener {
 
     @AfterMethod
     public void afterTest(ITestResult result){
+
         if (result.getStatus() == ITestResult.FAILURE) {
+
+            String testName = result.getName();
+
+            String Url = _driver.getCurrentUrl();
             System.out.println("ERROR FATAL");
+            Reporter.log("Error en test: " + testName);
             try
             {
-                String path = GetScreenshot.capture(_driver, result.getName());
-                Reporter.log("<br><img src='" + path + "'/></b>", true);
+                String path = GetScreenshot.capture(_driver, testName);
+
+                Reporter.log("Error de test en pagina: " + Url, true);
+                Reporter.log("<br><a href='" + path + "'/>Captura error test " + testName + "</a>", true);
             }
             catch (IOException e)
             {

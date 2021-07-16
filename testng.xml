@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-    <test verbose="2" preserve-order="true" name="LogINSuite.java">
-            <classes>
-                <class name="tests.LogINSuite">
-                    <methods>
-                        <include name="correctUserLogIn"/>
-                        <include name="failTestDemo"/>
-                    </methods>
-                </class>
-            </classes>
-    </test>
-    <test verbose="2" preserve-order="true" name="HomePageSuite.java">
-            <classes>
-                <class name="tests.HomePageSuite">
-                    <methods>
-                        <include name="selectItemSonyXperia"/>
-                    </methods>
-                </class>
-            </classes>
+
+    <test verbose="2" preserve-order="true" name="CartSuite.java">
+        <classes>
+            <class name="tests.CartSuite">
+                <methods>
+                    <include name="sumatorioTotalesPreciosProductos"/>
+                </methods>
+            </class>
+        </classes>
     </test>
 </suite>
