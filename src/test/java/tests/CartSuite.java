@@ -51,6 +51,7 @@ public class CartSuite extends BaseTest {
 
         Reporter.log("Cuando Controlo el precio de cada producto en la columna Price");
         paginaCart.CapturarPrecioProductos();
+
         Reporter.log("Y sumó todos los valores");
         paginaCart.SumarPrecios();
 
